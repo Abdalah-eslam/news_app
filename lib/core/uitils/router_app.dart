@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:news_app/feature/home/news_home_screen.dart';
+import 'package:news_app/feature/home_presentation/news_home_screen.dart';
 
 import 'package:news_app/feature/splash_screen.dart';
 
@@ -15,7 +15,7 @@ abstract class RouterApp {
       GoRoute(
         path: '/NewsHome',
         builder: (context, state) {
-          return NewsHomeScreen();
+          return const NewsHomeScreen();
         },
       ),
     ],

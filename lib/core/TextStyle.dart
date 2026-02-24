@@ -17,4 +17,9 @@ class CustomTextstyle {
     fontSize: 18,
     fontWeight: FontWeight.bold,
   );
+  static TextStyle text16Boldgray = TextStyle(
+    color: Colors.grey[850],
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
 }

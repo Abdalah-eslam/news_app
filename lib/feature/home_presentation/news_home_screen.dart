@@ -1,7 +1,8 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/TextStyle.dart';
-import 'package:news_app/feature/home/homebody.dart';
+import 'package:news_app/feature/home_presentation/today_news_screen.dart';
+import 'package:news_app/feature/home_presentation/widgets/homebody.dart';
 
 class NewsHomeScreen extends StatefulWidget {
   const NewsHomeScreen({super.key});
@@ -16,7 +17,7 @@ class _NewsHomeScreenState extends State<NewsHomeScreen> {
 
   List<Widget> tabItems = [
     Homebody(),
-    Center(child: Text("1")),
+    TodayNewsBody(),
     Center(child: Text("2")),
   ];
 
