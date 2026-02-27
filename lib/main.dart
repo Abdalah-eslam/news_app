@@ -5,6 +5,7 @@ import 'package:news_app/core/uitils/di_convig.dart';
 import 'package:news_app/core/uitils/router_app.dart';
 import 'package:news_app/feature/data/repos/home_repo_impl.dart';
 import 'package:news_app/feature/home_presentation/cubits/news_cubit.dart';
+import 'package:news_app/feature/home_presentation/cubits/searchCubit/search_cubit.dart';
 import 'package:news_app/feature/home_presentation/cubits/trending_cubit_cubit.dart';
 
 void main() {
@@ -28,6 +29,9 @@ class NewsApp extends StatelessWidget {
           create: (context) =>
               TrendingCubitCubit(homeRepoImpl: getIt<HomeRepoImpl>())
                 ..fetchTrending(),
+        ),
+        BlocProvider(
+          create: (context) => SearchCubit(homeRepoImpl: getIt<HomeRepoImpl>()),
         ),
       ],
       child: MaterialApp.router(

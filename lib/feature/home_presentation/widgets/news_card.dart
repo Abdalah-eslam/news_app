@@ -37,7 +37,12 @@ class NewsCard extends StatelessWidget {
                   onTap: () {
                     launchURL(context, urlparse);
                   },
-                  title: Text(title, style: CustomTextstyle.text24BoldBlue),
+                  title: Text(
+                    title,
+                    style: CustomTextstyle.text24BoldBlue,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
                   subtitle: Text(author),
                   isThreeLine: true,
                 ),
@@ -68,12 +73,27 @@ class NewsCard extends StatelessWidget {
                   width: MediaQuery.of(context).size.height * 0.18,
                   height: MediaQuery.of(context).size.height * 0.19,
 
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(imageTourl),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.network(
+                      imageTourl,
                       fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child; //
+                        }
+                        return Container(
+                          color: Colors.grey[300],
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.grey[300],
+                          child: Icon(Icons.broken_image),
+                        );
+                      },
                     ),
-                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
               ),

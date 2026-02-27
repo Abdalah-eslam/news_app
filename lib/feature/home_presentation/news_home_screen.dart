@@ -1,6 +1,8 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/TextStyle.dart';
+import 'package:news_app/feature/data/newsModels/news.dart';
+import 'package:news_app/feature/home_presentation/searchscreen.dart';
 import 'package:news_app/feature/home_presentation/today_news_screen.dart';
 import 'package:news_app/feature/home_presentation/widgets/homebody.dart';
 
@@ -15,11 +17,7 @@ class _NewsHomeScreenState extends State<NewsHomeScreen> {
   int _selectedIndex = 0;
   bool isslected = true;
 
-  List<Widget> tabItems = [
-    Homebody(),
-    TodayNewsBody(),
-    Center(child: Text("2")),
-  ];
+  List<Widget> tabItems = [Homebody(), TodayNewsBody(), Searchscreen()];
 
   @override
   void initState() {
