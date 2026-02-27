@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:news_app/core/TextStyle.dart';
 import 'package:news_app/core/uitils/customAppBar.dart';
+import 'package:news_app/feature/home_presentation/widgets/news_card.dart';
+import 'package:news_app/feature/home_presentation/widgets/topimageList.dart';
 
 class TodayNewsBody extends StatelessWidget {
   const TodayNewsBody({super.key});
@@ -27,36 +31,40 @@ class TodayNewsBody extends StatelessWidget {
           ),
         ),
 
+        SliverToBoxAdapter(child: Column(children: [Topimagelist()])),
         SliverToBoxAdapter(
           child: SizedBox(
-            height: 300,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  child: Container(
-                    width: 250,
-                    height: 200,
-                    color: Colors.white,
-                    child: Center(child: Text('News Item ${index + 1}')),
-                  ),
-                );
-              },
-            ),
+            height: 40,
+            child: Text('Trending', style: CustomTextstyle.text18BoldOrange),
           ),
         ),
-        SliverList.builder(
-          itemCount: 20,
+        SliverMasonryGrid.count(
+          childCount: 10,
+          crossAxisCount: 2,
           itemBuilder: (context, index) {
-            return Center(
-              child: Text(
-                'No more news for today.',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+            return Card(
+              elevation: 2,
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.network(
+                      'https://images.pexels.com/photos/1526713/pexels-photo-1526713.jpeg?cs=srgb&dl=pexels-francesco-ungaro-1526713.jpg&fm=jpg',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                  ),
+                  SizedBox(height: 7),
+                  ListTile(
+                    title: Text('Lorem ipsum  '),
+                    subtitle: Text(
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    isThreeLine: true,
+                  ),
+                ],
               ),
             );
           },
