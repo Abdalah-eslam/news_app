@@ -19,6 +19,7 @@ class CustomAppbar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(title, style: CustomTextstyle.text24BoldBlue),
+          SizedBox(width: 5),
           Text(subtitle, style: CustomTextstyle.text24BoldOrange),
           Spacer(),
           Text(rightText, style: CustomTextstyle.text16Boldgray),

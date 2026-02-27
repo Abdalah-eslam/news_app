@@ -61,17 +61,20 @@ class NewsCard extends StatelessWidget {
             Positioned(
               top: 8,
               right: 8,
-              child: Container(
-                margin: const EdgeInsets.only(right: 8, top: 8),
-                width: MediaQuery.of(context).size.height * 0.18,
-                height: MediaQuery.of(context).size.height * 0.19,
+              child: Hero(
+                tag: imageTourl,
+                child: Container(
+                  margin: const EdgeInsets.only(right: 8, top: 8),
+                  width: MediaQuery.of(context).size.height * 0.18,
+                  height: MediaQuery.of(context).size.height * 0.19,
 
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(imageTourl),
-                    fit: BoxFit.cover,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(imageTourl),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),

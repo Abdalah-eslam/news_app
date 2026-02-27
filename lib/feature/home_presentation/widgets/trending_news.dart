@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+import 'package:news_app/core/uitils/router_app.dart';
 import 'package:news_app/feature/data/newsModels/news.dart';
 
 class TrendingNews extends StatelessWidget {
@@ -14,38 +16,49 @@ class TrendingNews extends StatelessWidget {
       childCount: 20,
       crossAxisCount: 2,
       itemBuilder: (context, index) {
-        return Card(
-          elevation: 2,
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.network(
-                  newsmodel.articles?[index].urlToImage ?? "",
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Container(height: 150, color: Colors.grey[300]);
-                  },
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      height: 150,
-                      color: Colors.grey,
-                      child: Icon(Icons.broken_image),
-                    );
-                  },
+        return InkWell(
+          onTap: () {
+            RouterApp.router.push(
+              '/detailsNews',
+              extra: newsmodel.articles![index],
+            );
+          },
+          child: Card(
+            elevation: 2,
+            child: Column(
+              children: [
+                Hero(
+                  tag: newsmodel.articles![index].urlToImage!,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.network(
+                      newsmodel.articles?[index].urlToImage ?? "",
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Container(height: 150, color: Colors.grey[300]);
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          height: 150,
+                          color: Colors.grey,
+                          child: Icon(Icons.broken_image),
+                        );
+                      },
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(height: 7),
-              ListTile(
-                title: Text(newsmodel.articles?[index].title ?? ""),
-                subtitle: Text(
-                  newsmodel.articles?[index].description ?? "",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                SizedBox(height: 7),
+                ListTile(
+                  title: Text(newsmodel.articles?[index].title ?? ""),
+                  subtitle: Text(
+                    newsmodel.articles?[index].description ?? "",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  isThreeLine: true,
                 ),
-                isThreeLine: true,
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

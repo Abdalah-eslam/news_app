@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:news_app/core/uitils/methodTimeofNewsago.dart';
+import 'package:news_app/core/uitils/router_app.dart';
 import 'package:news_app/feature/data/newsModels/news.dart';
 import 'package:news_app/feature/home_presentation/widgets/news_card.dart';
 
@@ -16,14 +18,20 @@ class ListviewNewscard extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 12.0),
-          child: NewsCard(
-            urlparse: newsModel.articles?[index].url ?? "",
-            title: newsModel.articles?[index].source?.name ?? '',
-            author: newsModel.articles?[index].author ?? "",
-            imageTourl: newsModel.articles?[index].urlToImage ?? "",
-            description: newsModel.articles?[index].description ?? "",
-            time: timeAgo(
-              DateTime.parse(newsModel.articles?[index].publishedAt ?? ''),
+          child: InkWell(
+            onTap: () => RouterApp.router.push(
+              '/detailsNews',
+              extra: newsModel.articles?[index],
+            ),
+            child: NewsCard(
+              urlparse: newsModel.articles?[index].url ?? "",
+              title: newsModel.articles?[index].source?.name ?? '',
+              author: newsModel.articles?[index].author ?? "",
+              imageTourl: newsModel.articles?[index].urlToImage ?? "",
+              description: newsModel.articles?[index].description ?? "",
+              time: timeAgo(
+                DateTime.parse(newsModel.articles?[index].publishedAt ?? ''),
+              ),
             ),
           ),
         );
