@@ -10,9 +10,9 @@ class Apiservice {
     );
   }
 
-  Future<Response> getnewestNews() async {
+  Future<Response> getnewestNews(String query) async {
     return await Dio().get(
-      '${baseUrl}everything?q=new&sortBy=publishedAt&apiKey=$apiKey',
+      '${baseUrl}everything?q=$query&sortBy=publishedAt&apiKey=$apiKey',
     );
   }
 

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Topimagenews extends StatefulWidget {
-  const Topimagenews({super.key, required this.image});
+  const Topimagenews({super.key, required this.image, required this.titile});
   final String image;
+  final String titile;
 
   @override
   State<Topimagenews> createState() => _TopimagenewsState();
@@ -43,23 +44,28 @@ class _TopimagenewsState extends State<Topimagenews> {
                 ),
               ),
             ),
-            AnimatedOpacity(
-              duration: const Duration(seconds: 1),
-              opacity: showOverlay ? 1 : 0,
-              child: Container(
-                width: 250,
-                height: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(32),
-                ),
-                alignment: Alignment.bottomLeft,
-                padding: const EdgeInsets.all(16),
-                child: const Text(
-                  'Title',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+            Positioned(
+              bottom: 0,
+              child: AnimatedOpacity(
+                duration: const Duration(seconds: 1),
+                opacity: showOverlay ? 1 : 0,
+                child: Container(
+                  width: 250,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  alignment: Alignment.bottomLeft,
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    widget.titile,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.orange,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

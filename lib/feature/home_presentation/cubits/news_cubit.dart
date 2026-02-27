@@ -4,14 +4,14 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:news_app/feature/data/newsModels/news.dart';
-import 'package:news_app/feature/data/repos/home_reop_impl.dart';
+import 'package:news_app/feature/data/repos/home_repo_impl.dart';
 
 part 'news_state.dart';
 
 class NewsCubit extends Cubit<NewsState> {
-  HomeRepoImpl homeRepoImpl;
+  final HomeRepoImpl homeRepoImpl;
 
-  NewsCubit(this.homeRepoImpl) : super(NewsInitial());
+  NewsCubit({required this.homeRepoImpl}) : super(NewsInitial());
 
   void fetchNews() async {
     emit(NewsLoading());

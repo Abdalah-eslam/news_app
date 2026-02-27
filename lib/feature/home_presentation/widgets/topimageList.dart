@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/feature/data/newsModels/news.dart';
 import 'package:news_app/feature/home_presentation/widgets/top_image_news_todayscreen.dart';
 
 class Topimagelist extends StatefulWidget {
-  const Topimagelist({super.key});
+  final NewsModel newsmodel;
+
+  const Topimagelist({super.key, required this.newsmodel});
 
   @override
   State<Topimagelist> createState() => _TopimagelistState();
@@ -14,10 +17,10 @@ class _TopimagelistState extends State<Topimagelist> {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
-      itemCount: 11,
+      itemCount: 20,
       itemBuilder: (context, index, realIndex) => Topimagenews(
-        image:
-            'https://tse1.mm.bing.net/th/id/OIP.gY3UuNfnbu5r4XXjrNNP_wHaLH?rs=1&pid=ImgDetMain&o=7&rm=3',
+        image: widget.newsmodel.articles?[index].urlToImage ?? "",
+        titile: widget.newsmodel.articles?[index].title ?? "",
       ),
       options: CarouselOptions(
         height: 280,

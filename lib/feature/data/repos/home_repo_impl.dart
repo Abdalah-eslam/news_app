@@ -21,27 +21,14 @@ class HomeRepoImpl implements HomeRepo {
     } catch (e) {
       return Left('Error: $e');
     }
-
-    //     try {
-    //   var response = await apiservice.getTopHeadlines();
-    //   print(response.statusCode);
-    //   print(response.data); // نشوف الريسبونس
-    //   final newsModel = NewsModel.fromMap(response.data);
-    //   print(newsModel.articles?.length); // نتأكد إن الموديل اتبنى
-    //   return Right(newsModel);
-    // } catch (e, s) {
-    //   print('Parsing ERROR: $e');
-    //   print(s);
-    //   return Left('Error: $e');
-    // }
   }
 
   @override
-  Future<Either<String, NewsModel>> getnewestNews() async {
+  Future<Either<String, NewsModel>> getTendingNews(String query) async {
     try {
-      final response = await apiservice.getnewestNews();
+      final response = await apiservice.getnewestNews(query);
       if (response.statusCode == 200) {
-        final newsModel = NewsModel.fromJson(response.data);
+        final newsModel = NewsModel.fromMap(response.data);
         return Right(newsModel);
       } else {
         return Left('Failed to fetch newest news');
@@ -56,7 +43,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       final response = await apiservice.searchNews(query);
       if (response.statusCode == 200) {
-        final newsModel = NewsModel.fromJson(response.data);
+        final newsModel = NewsModel.fromMap(response.data);
         return Right(newsModel);
       } else {
         return Left('Failed to search news');
